@@ -1,0 +1,17 @@
+$fonts: (
+    ("Opensans", "opensans-regular", 400, normal),
+    ("Opensans", "opensans-bold", 700, normal),
+    ("Play", "play-bold", 700, normal),
+);
+
+@each $family, $file-name, $weight, $style in $fonts {
+  @font-face {
+    font-family: $family;
+    src:
+      url("~@/assets/fonts/" + $file-name + ".woff2") format("woff2"),
+      url("~@/assets/fonts/" + $file-name + ".woff") format("woff");
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}

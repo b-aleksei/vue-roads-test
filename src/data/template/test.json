@@ -1,0 +1,42 @@
+{
+  "questions": [
+    {
+      "text": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "rightAnswerId": 1,
+      "answers": [
+        {
+          "id": 1,
+          "text": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        },
+        {
+          "id": 2,
+          "text": "2Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        }
+      ]
+    },
+    {
+      "text": "2Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "rightAnswerId": 2,
+      "answers": [
+        {
+          "id": 1,
+          "text": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        },
+        {
+          "id": 2,
+          "text": "2Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "title": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    {
+      "title": "2Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    }
+  ]
+}
