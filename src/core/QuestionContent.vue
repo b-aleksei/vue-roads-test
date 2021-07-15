@@ -28,7 +28,7 @@
     .question
       .container.question__inner
         .question__counter
-          span.current 1
+          span.current(v-html="question")
           span /
           span.total 9
         template(v-if="!currentAnswer")
@@ -42,7 +42,8 @@
           b.question__feedback(v-html="feedback")
           p(v-if="marketing")
           router-link(
-            :to="{name: 'HalfExample',query: { plan: 2} ,params: {userId: 1, }}"
+            :to="{path: `/halfexample/${question + 1}`}"
+            @click.native="currentAnswer = null"
             class="btn-light-blue question__btn-next") Далее
 </template>
 
@@ -80,18 +81,27 @@ export default {
   imgBgSizes: [320, 640, 1600, 3200],
   imgRudderSizes: [1025, 2050],
   created() {
-    const questionsData = this.$utils.loadJSON('template/questions.json');
-    console.log('this.question: ', this.question);
-    if (questionsData) {
-      this.info = questionsData.question1;
-      this.marketing = questionsData.question1.marketing;
-    }
+    this.renderQuestion();
   },
   methods: {
+    renderQuestion() {
+      console.log('renderQuestion');
+      const questionsData = this.$utils.loadJSON('template/questions.json');
+      if (questionsData && this.question) {
+        this.info = questionsData[`question${this.question}`];
+        this.marketing = questionsData[`question${this.question}`].marketing;
+        this.feedback = '';
+      }
+    },
     onClickAnswer(e, answerObj) {
       e.currentTarget.classList.add('active');
       this.currentAnswer = answerObj.id;
       this.feedback = answerObj.feedback;
+    },
+  },
+  watch: {
+    question() {
+      this.renderQuestion();
     },
   },
 };

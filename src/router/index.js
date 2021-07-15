@@ -5,10 +5,16 @@ import generatedRoutes from 'vue-auto-routing';
 
 Vue.use(VueRouter);
 
+/*
 const routes = generatedRoutes.map((route) => {
   route.path = route.path.replace(/Index/, '');
   return route;
 });
+*/
+
+const routes = [
+  {}
+]
 
 export default new VueRouter({
   mode: 'history',

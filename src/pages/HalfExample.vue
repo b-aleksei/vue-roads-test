@@ -8,25 +8,34 @@
 
 <script>
 import QuestionContent from '@/core/QuestionContent.vue';
-import Footer from '@/components/Footer.vue';
 import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'HalfExample',
   components: {
-    Header,
     Footer,
+    Header,
     QuestionContent,
   },
   data: () => ({
-    currentQuestion: 123,
+    currentQuestion: null,
   }),
+  methods: {
+    updateUrl() {
+      const { question } = this.$route.params;
+      if (question) {
+        this.currentQuestion = +question;
+      }
+    },
+  },
   created() {
-    console.log('this.$route', this.$route, this.$route.params);
-    this.currentQuestion = this.$route.params.question;
-    if (this.currentQuestion) {
-      console.log('this.currentQuestion: ', this.currentQuestion);
-    }
+    this.updateUrl();
+  },
+  watch: {
+    $route() {
+      this.updateUrl();
+    },
   },
 };
 </script>
