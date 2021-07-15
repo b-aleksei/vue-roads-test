@@ -113,4 +113,8 @@ export default {
     }
   }
 }
+
+.half-layout .footer__container {
+  justify-content: flex-end;
+}
 </style>

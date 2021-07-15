@@ -1,18 +1,22 @@
 <template lang="pug">
-  test-layout
+  .default.half-layout
+    Header(qa_header)
     question-content(
       :question="currentQuestion")
+    Footer(qa_footer)
 </template>
 
 <script>
-import TestLayout from '@/layouts/TestLayout.vue';
 import QuestionContent from '@/core/QuestionContent.vue';
+import Footer from '@/components/Footer.vue';
+import Header from '@/components/Header.vue';
 
 export default {
   name: 'HalfExample',
   components: {
+    Header,
+    Footer,
     QuestionContent,
-    TestLayout,
   },
   data: () => ({
     currentQuestion: 123,
@@ -28,13 +32,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .half-example {
-    color: red;
-    @include flex(flex, $dir: column);
-    flex: 1 0 auto;
 
-    &__right {
-      flex: 1 0 auto;
-    }
-  }
 </style>
