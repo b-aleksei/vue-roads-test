@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import HalfExample from '@/pages/HalfExample.vue';
-import Index from '@/pages/Index.vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
 // import generatedRoutes from 'vue-auto-routing';
 
@@ -13,8 +11,8 @@ Vue.use(VueRouter);
 });*/
 
 const routes = [
-  { path: '/halfexample/:question', component: HalfExample },
-  { path: '/', component: Index },
+  { path: '/halfexample/:question', component: () => import('@/pages/HalfExample.vue') },
+  { path: '/', component: () => import('@/pages/Index.vue') },
 ];
 
 
