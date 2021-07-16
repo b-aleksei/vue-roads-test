@@ -21,26 +21,26 @@ export default {
   data: () => ({
     currentQuestion: null,
   }),
-/*  methods: {
+  /*  methods: {
     updateUrl() {
       const { question } = this.$route.params;
       if (question) {
         this.currentQuestion = +question;
       }
     },
-  },*/
+  }, */
   created() {
     this.currentQuestion = +this.$route.params.question;
     this.$utils.totalPoints = 0;
-/*    if (question) {
+    /*    if (question) {
       this.currentQuestion = +question;
-    }*/
+    } */
   },
 /*  watch: {
     $route() {
       this.updateUrl();
     },
-  },*/
+  }, */
 };
 </script>
 
