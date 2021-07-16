@@ -41,10 +41,8 @@
         template(v-if="currentAnswer")
           b.question__feedback(v-html="feedback")
           p.question__marketing(v-if="marketing" v-html="marketing")
-          router-link(
-            :to="updateRoute"
-            @click.native="currentAnswer = null"
-            class="btn-light-blue question__btn-next" replace) Далее
+          a.btn-light-blue.question__btn-next(
+            @click="updateRoute") Далее
 </template>
 
 <script>
@@ -78,13 +76,6 @@ export default {
       return this.currentAnswer === this.info.rightAnswerId
         ? 'test/joyful-face' : 'test/angry-face';
     },
-    updateRoute() {
-      const currentNumber = this.question + 1;
-      if (currentNumber >= this.totalQuestions) {
-        return { path: `/result/1` };
-      }
-      return { path: `/roadstest/${currentNumber}` };
-    },
   },
   imgBgSizes: [320, 640, 1600, 3200],
   imgRudderSizes: [1025, 2050],
@@ -105,6 +96,25 @@ export default {
       e.currentTarget.classList.add('active');
       this.currentAnswer = answerObj.id;
       this.feedback = answerObj.feedback;
+      if (answerObj.id === this.info.rightAnswerId) {
+        this.$utils.totalPoints += 1;
+      }
+    },
+    updateRoute() {
+      this.currentAnswer = null;
+      if (this.question === this.totalQuestions) {
+        if (this.$utils.totalPoints >= 5) {
+          this.$router.push('/result/1');
+          return;
+        }
+        if (this.$utils.totalPoints >= 3) {
+          this.$router.push('/result/2');
+          return;
+        }
+        this.$router.push('/result/3');
+        return;
+      }
+      this.$router.push(`/roadstest/${this.question + 1}`);
     },
   },
   watch: {

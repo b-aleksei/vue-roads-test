@@ -60,6 +60,7 @@ Vue.config.productionTip = false;
 Vue.prototype.$utils = {
   // api,
   // throttle,
+  totalPoints: 0,
   debounce,
   loadAsset,
   loadJSON(filename) {

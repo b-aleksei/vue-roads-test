@@ -3,7 +3,6 @@
     picture-comp(
       className="test__bg"
       :fileName="`result/result${question}-`"
-      sizes="(min-width: 1280px) 50vw, 100vw"
       :imgSetSizes="$options.imgBgSizes"
       width="320"
       height="195"
