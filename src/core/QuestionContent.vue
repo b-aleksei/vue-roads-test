@@ -114,7 +114,7 @@ export default {
         this.$router.push('/result/3');
         return;
       }
-      this.$router.push(`/roadstest/${this.question + 1}`);
+      this.$router.replace(`/roadstest/${this.question + 1}`);
     },
   },
   watch: {
