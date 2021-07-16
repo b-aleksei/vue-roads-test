@@ -26,7 +26,7 @@
 import Meta from '@/utils/meta';
 
 export default {
-  name: 'Share',
+  name: 'ShareComp',
   data: (context) => ({
     info: context.$utils.loadJSON('template/common.json'),
     socials: [

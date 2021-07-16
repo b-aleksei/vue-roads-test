@@ -1,24 +1,22 @@
 <template lang="pug">
-  .default.half-layout
+  .default.result
     Header(qa_header)
-    question-content(
+    result-content(
       :question="currentQuestion")
-    Footer(qa_footer)
+    Footer(qa_footer team)
 </template>
 
 <script>
-import QuestionContent from '@/core/QuestionContent.vue';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
-// import Transition from '@/layouts/TransitionLayout.vue';
+import ResultContent from '@/core/ResultContent.vue';
 
 export default {
-  name: 'HalfExample',
+  name: 'ResultTest',
   components: {
+    ResultContent,
     Footer,
     Header,
-    QuestionContent,
-    // Transition,
   },
   data: () => ({
     currentQuestion: null,

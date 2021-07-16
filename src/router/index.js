@@ -11,7 +11,8 @@ Vue.use(VueRouter);
 });*/
 
 const routes = [
-  { path: '/halfexample/:question', component: () => import('@/pages/HalfExample.vue') },
+  { path: '/roadstest/:question', component: () => import('@/pages/HalfExample.vue') },
+  { path: '/result/:question', component: () => import('@/pages/ResultTest.vue') },
   { path: '/', component: () => import('@/pages/Index.vue') },
 ];
 

@@ -65,6 +65,7 @@ Vue.prototype.$utils = {
   loadJSON(filename) {
     return Object.freeze(require(`@/data/${filename}`));
   },
+  info: Object.freeze(require('@/data/template/common.json')),
 };
 
 // eslint-disable-next-line no-unused-vars

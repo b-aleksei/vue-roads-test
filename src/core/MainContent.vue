@@ -13,7 +13,7 @@
       .intro__middle
         .container
           p.intro__text Мы составили этот тест вместе с производителем шин <a href="https://cordiant.ru/">Cordiant</a>, чтобы вы проверили, сможете ли отличить российские дороги от остальных. Активируйте внутреннего Шерлока и вперёд! Пройдёте тест до конца — получите <span>скидку 15%</span> на зимнюю резину.
-          router-link(:to={path: "/halfexample/1"} class="btn-light-blue intro__run-test") Пройти тест!
+          router-link(:to={path: "/roadstest/1"} class="btn-light-blue intro__run-test") Пройти тест!
 </template>
 
 <script>

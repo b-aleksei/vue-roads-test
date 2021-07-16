@@ -2,19 +2,19 @@
   <header class="header">
     <div class="header__inner container">
       <a class="logo logo-lifehacker"
-         :href="info.main.url"
+         :href="$utils.info.main.url"
          target="_blank"
          rel="noopener"
-         :aria-label="info.main.text"
+         :aria-label="$utils.info.main.text"
          qa_logo_lh_header
       >
         <SvgEl name="logo"/>
       </a>
       <a class="logo logo-partner"
-         :href="info.main.url"
+         :href="$utils.info.partner.url"
          target="_blank"
          rel="noopener"
-         :aria-label="info.main.text"
+         :aria-label="$utils.info.partner.text"
          qa_logo_partner_header
       >
         <SvgEl name="cordiant"/>
@@ -31,9 +31,6 @@ export default {
   components: {
     SvgEl,
   },
-  data: (context) => ({
-    info: context.$utils.loadJSON('template/common.json'),
-  }),
 };
 </script>
 <style lang="scss">

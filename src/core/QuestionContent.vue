@@ -19,7 +19,7 @@
         alt="салон автомобиля")
       picture-comp(
         className="test__bg"
-        fileName="test/test1-"
+        :fileName="`test/test${question}-`"
         sizes="(min-width: 1280px) 50vw, 100vw"
         :imgSetSizes="$options.imgBgSizes"
         width="320"
@@ -30,7 +30,7 @@
         .question__counter
           span.current(v-html="question")
           span /
-          span.total 9
+          span.total(v-html="totalQuestions")
         template(v-if="!currentAnswer")
           b.question__title Где эта дорога?
           .question__answers-list
@@ -40,11 +40,11 @@
               @click="onClickAnswer($event, item)")
         template(v-if="currentAnswer")
           b.question__feedback(v-html="feedback")
-          p(v-if="marketing")
+          p.question__marketing(v-if="marketing" v-html="marketing")
           router-link(
-            :to="{path: `/halfexample/${question + 1}`}"
+            :to="updateRoute"
             @click.native="currentAnswer = null"
-            class="btn-light-blue question__btn-next") Далее
+            class="btn-light-blue question__btn-next" replace) Далее
 </template>
 
 <script>
@@ -58,6 +58,7 @@ export default {
     PictureComp,
   },
   data: () => ({
+    totalQuestions: 6,
     info: {},
     currentAnswer: null,
     feedback: '',
@@ -77,6 +78,13 @@ export default {
       return this.currentAnswer === this.info.rightAnswerId
         ? 'test/joyful-face' : 'test/angry-face';
     },
+    updateRoute() {
+      const currentNumber = this.question + 1;
+      if (currentNumber >= this.totalQuestions) {
+        return { path: `/result/1` };
+      }
+      return { path: `/roadstest/${currentNumber}` };
+    },
   },
   imgBgSizes: [320, 640, 1600, 3200],
   imgRudderSizes: [1025, 2050],
@@ -85,9 +93,9 @@ export default {
   },
   methods: {
     renderQuestion() {
-      console.log('renderQuestion');
       const questionsData = this.$utils.loadJSON('template/questions.json');
       if (questionsData && this.question) {
+        this.totalQuestions = Object.keys(questionsData).length;
         this.info = questionsData[`question${this.question}`];
         this.marketing = questionsData[`question${this.question}`].marketing;
         this.feedback = '';
@@ -164,7 +172,6 @@ export default {
   flex-direction: column;
   padding: rem(25) rem(16) 0;
   width: initial;
-  //align-items: flex-start;
 
   @include breakpoint(lg) {
     padding: 78px 80px 78px 104px;
@@ -199,7 +206,6 @@ export default {
   row-gap: rem(15);
 }
 .question__answer {
-  @include flex(flex,center);
   min-height: rem(82);
   padding: rem(16);
   font-size: rem(14);
@@ -218,10 +224,6 @@ export default {
     font-size: rem(16);
   }
 
-  span {
-    font-weight: 700;
-  }
-
   &.active {
     background: $white;
   }
@@ -238,6 +240,16 @@ export default {
 
   @include breakpoint(lg) {
     margin-top: 58px;
+  }
+}
+
+.question__marketing {
+  margin-bottom: rem(40);
+  font-weight: 700;
+
+  a {
+    color: $light-blue;
+    text-decoration: underline;
   }
 }
 </style>

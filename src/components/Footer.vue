@@ -1,19 +1,20 @@
 <template lang="pug">
   footer.footer(qa_footer)
     .container.footer__container
+      a.footer__team(v-if="team" :href="$utils.info.main.url") Команда проекта
       ShareComp.footer__share(
         v-if="share"
         theme="blue")
       .footer__copyright
         a(
-          :href="info.main.url"
+          :href="$utils.info.main.url"
           target="_blank"
           rel="noopener"
-          v-html="info.main.text"
+          v-html="$utils.info.main.text"
           ga_logo_lh_footer)
         | |
-        a(v-if="info.partner" :href="info.partner.url" target="_blank" rel="noopener"
-          v-html="info.partner.text" qa_logo_partner_footer qa_link_external)
+        a(v-if="$utils.info.partner" :href="$utils.info.partner.url" target="_blank" rel="noopener"
+          v-html="$utils.info.partner.text" qa_logo_partner_footer qa_link_external)
         span © {{ getCurrentYear() }}
 </template>
 
@@ -22,11 +23,9 @@ import ShareComp from '@/core/ShareComp.vue';
 
 export default {
   name: 'Footer',
-  data: (context) => ({
-    info: context.$utils.loadJSON('template/common.json'),
-  }),
   props: {
     share: Boolean,
+    team: Boolean,
   },
   components: {
     ShareComp,
@@ -46,8 +45,8 @@ export default {
   padding: rem(30) 0;
 
   @include breakpoint(sm) {
-    padding: 0;
-    height: rem(72);
+    //padding: 0;
+    min-height: rem(72);
   }
 
   @include breakpoint(lg) {
@@ -114,7 +113,30 @@ export default {
   }
 }
 
+.footer__team {
+  margin-bottom: rem(40);
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  color: $light-blue;
+  text-decoration: underline;
+
+  @include breakpoint(lg) {
+    margin: 0 rem(113) 0 0;
+  }
+}
+
 .half-layout .footer__container {
   justify-content: flex-end;
+}
+.result .footer__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include breakpoint(lg) {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
 }
 </style>
